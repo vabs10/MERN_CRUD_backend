@@ -13,8 +13,16 @@ var usersRouter = require('./routes/users');
 const studentRoute = require("./routes/student.routes");
 
 // Connecting mongoDB Database
+const options = {
+
+  connectTimeoutMS: 30000, // Increase this value if needed
+  socketTimeoutMS: 45000, // Increase this value if needed
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  
+  };
 mongoose
-  .connect("mongodb+srv://vyagneshwar98:bkZXMcZhT9yhi8rA@cluster0.ofpcunt.mongodb.net/express")
+  .connect("mongodb+srv://vyagneshwar98:bkZXMcZhT9yhi8rA@cluster0.ofpcunt.mongodb.net/express", options)
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`,
